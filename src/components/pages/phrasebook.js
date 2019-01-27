@@ -93,8 +93,8 @@ class Phrasebook extends React.Component {
     return (
       <div className={classes.container}>
         <AppBar position="static">
-          <Toolbar>
-            <Typography variant="title" color="inherit">{strings.phrasebook}</Typography>
+          <Toolbar variant="dense">
+            <Typography variant="h6" color="inherit">{strings.phrasebook}</Typography>
           </Toolbar>
         </AppBar>
         {(() => {
@@ -103,7 +103,7 @@ class Phrasebook extends React.Component {
               <div className={classes.emptyContainer}>
                 <div className={classes.emptyInnerContainer}>
                   <ToggleStar className={classes.bigIcon} />
-                  <Typography variant="headline">{strings.phrasebookIsEmpty}</Typography>
+                  <Typography variant="h6">{strings.phrasebookIsEmpty}</Typography>
                 </div>
               </div>
             );

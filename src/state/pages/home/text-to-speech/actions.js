@@ -63,7 +63,7 @@ export const playTextToSpeech = (textToSpeechLang, textToSpeechText) => ((dispat
           return null;
         }
 
-        const { chinaMode } = getState().settings;
+        const { chinaMode } = getState().preferences;
         return textToSpeechShortText(textToSpeechLang, strArr[i], i, strArr.length, chinaMode)
           .then(() => {
             if (i < strArr.length - 1) {

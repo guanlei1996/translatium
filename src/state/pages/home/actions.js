@@ -9,7 +9,7 @@ import translateText from '../../../helpers/translate-text';
 import phrasebookDb from '../../../helpers/phrasebook-db';
 
 import { openAlert } from '../../root/alert/actions';
-import { updateSetting } from '../../root/settings/actions';
+import { setPreference } from '../../root/preferences/actions';
 import { addHistoryItem } from './history/actions';
 
 export const toggleFullscreenInputBox = () => ({
@@ -17,8 +17,8 @@ export const toggleFullscreenInputBox = () => ({
 });
 
 export const translate = saveToHistory => ((dispatch, getState) => {
-  const { settings, pages: { home } } = getState();
-  const { inputLang, outputLang, chinaMode } = settings;
+  const { preferences, pages: { home } } = getState();
+  const { inputLang, outputLang, chinaMode } = preferences;
   const { inputText, fullscreenInputBox } = home;
 
   // Safe
@@ -75,9 +75,9 @@ export const translate = saveToHistory => ((dispatch, getState) => {
 
 export const updateInputText = (inputText, selectionStart, selectionEnd) => (
   (dispatch, getState) => {
-    const { settings, pages } = getState();
+    const { preferences, pages } = getState();
     const { home } = pages;
-    const { realtime } = settings;
+    const { realtime } = preferences;
     const currentInputText = home.inputText;
     const { fullscreenInputBox } = home;
 
@@ -155,8 +155,8 @@ export const loadOutput = output => ((dispatch) => {
   });
 
   // Update inputLang, outputLang, inputText without running anything;
-  dispatch(updateSetting('inputLang', output.inputLang));
-  dispatch(updateSetting('outputLang', output.outputLang));
+  dispatch(setPreference('inputLang', output.inputLang));
+  dispatch(setPreference('outputLang', output.outputLang));
   dispatch({
     type: UPDATE_INPUT_TEXT,
     inputText: output.inputText,

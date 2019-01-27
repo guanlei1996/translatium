@@ -28,10 +28,10 @@ export const releaseDevice = () => ((dispatch) => {
 });
 
 export const stopRecording = () => ((dispatch, getState) => {
-  const { settings, pages } = getState();
+  const { preferences, pages } = getState();
   const { home } = pages;
   const { inputText, selectionStart, selectionEnd } = home;
-  const { inputLang, chinaMode } = settings;
+  const { inputLang, chinaMode } = preferences;
 
   const endpoint = process.env.REACT_APP_GOOGLE_ENDPOINT || (chinaMode === true ? 'http://www.google.cn' : 'https://www.google.com');
 

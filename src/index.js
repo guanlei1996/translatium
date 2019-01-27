@@ -19,9 +19,13 @@ import colorPairs from './constants/colors';
 
 import App from './components/app';
 
+import loadListeners from './listeners';
+
 export const runApp = (isRestart) => {
   /* global document */
   const state = store.getState();
+
+  loadListeners(store);
 
   if (!isRestart) {
     // Mock user agent
@@ -34,12 +38,15 @@ export const runApp = (isRestart) => {
     );
   }
 
-  store.dispatch(updateStrings(state.settings.langId));
+  store.dispatch(updateStrings(state.preferences.langId));
 
   const theme = createMuiTheme({
+    typography: {
+      useNextVariants: true,
+    },
     palette: createPalette({
-      type: state.settings.darkMode ? 'dark' : 'light',
-      primary: colorPairs[state.settings.primaryColorId],
+      type: state.preferences.darkMode ? 'dark' : 'light',
+      primary: colorPairs[state.preferences.primaryColorId],
       secondary: {
         light: pink[300],
         main: pink[500],
@@ -66,5 +73,5 @@ export const runApp = (isRestart) => {
 runApp();
 
 const state = store.getState();
-const openOnMenubarShortcut = state.settings.openOnMenubarShortcut;
+const openOnMenubarShortcut = state.preferences.openOnMenubarShortcut;
 ipcRenderer.send('set-show-menubar-shortcut', openOnMenubarShortcut);

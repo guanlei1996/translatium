@@ -112,9 +112,7 @@ class Handwriting extends React.Component {
         pageY = e.pageY;
       }
 
-      const titleBarHeight = (window.platform === 'darwin') ? 22 : 0;
-
-      this.addClick(pageX - this.offsetLeft, pageY - this.offsetTop - titleBarHeight, true);
+      this.addClick(pageX - this.offsetLeft, pageY - this.offsetTop, true);
     }
   }
 
@@ -344,7 +342,7 @@ const mapDispatchToProps = dispatch => ({
 });
 
 const mapStateToProps = state => ({
-  darkMode: state.settings.darkMode,
+  darkMode: state.preferences.darkMode,
   inputText: state.pages.home.inputText,
   selectionEnd: state.pages.home.selectionEnd,
   selectionStart: state.pages.home.selectionStart,

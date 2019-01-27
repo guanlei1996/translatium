@@ -17,12 +17,12 @@ import connectComponent from '../helpers/connect-component';
 import { screenResize } from '../state/root/screen/actions';
 import { updateImeMode, updateInputText } from '../state/pages/home/actions';
 import { closeSnackbar } from '../state/root/snackbar/actions';
-import { updateInputLang } from '../state/root/settings/actions';
+import { updateInputLang } from '../state/root/preferences/actions';
 import { changeRoute } from '../state/root/router/actions';
 
 import Home from './pages/home';
 import Phrasebook from './pages/phrasebook';
-import Settings from './pages/settings';
+import Settings from './pages/preferences';
 import LanguageList from './pages/language-list';
 import Ocr from './pages/ocr';
 
@@ -32,7 +32,7 @@ import WindowsTitlebar from './root/windows-titlebar';
 import {
   ROUTE_HOME,
   ROUTE_PHRASEBOOK,
-  ROUTE_SETTINGS,
+  ROUTE_PREFERENCES,
   ROUTE_LANGUAGE_LIST_INPUT,
   ROUTE_LANGUAGE_LIST_OUTPUT,
   ROUTE_OCR,
@@ -59,16 +59,6 @@ const styles = theme => ({
     display: 'flex',
     alignItems: 'center',
     justifyContent: 'center',
-  },
-  fakeTitleBar: {
-    flexBasis: 22,
-    height: 22,
-    backgroundColor: theme.palette.primary.dark,
-    color: '#fff',
-    textAlign: 'center',
-    fontSize: 13,
-    WebkitUserSelect: 'none',
-    WebkitAppRegion: 'drag',
   },
   contentContainer: {
     flex: 1,
@@ -128,7 +118,7 @@ class App extends React.Component {
       case ROUTE_PHRASEBOOK:
         routeContent = <Phrasebook />;
         break;
-      case ROUTE_SETTINGS:
+      case ROUTE_PREFERENCES:
         routeContent = <Settings />;
         break;
       case ROUTE_LANGUAGE_LIST_INPUT:
@@ -146,11 +136,6 @@ class App extends React.Component {
 
     return (
       <div className={classes.container}>
-        {window.platform === 'darwin' && (
-          <div className={classes.fakeTitleBar}>
-            Translatium
-          </div>
-        )}
         {window.platform === 'win32' && <WindowsTitlebar />}
         <div className={classes.contentContainer}>
           {fullPageLoading && (
@@ -185,9 +170,9 @@ class App extends React.Component {
                   onClick={() => onBottomNavigationActionClick(ROUTE_PHRASEBOOK)}
                 />
                 <BottomNavigationAction
-                  label={strings.settings}
+                  label={strings.preferences}
                   icon={<ActionSettings className={classes.icon} />}
-                  onClick={() => onBottomNavigationActionClick(ROUTE_SETTINGS)}
+                  onClick={() => onBottomNavigationActionClick(ROUTE_PREFERENCES)}
                 />
               </BottomNavigation>
             </Paper>
@@ -217,7 +202,7 @@ App.propTypes = {
 const mapStateToProps = (state) => {
   let bottomNavigationSelectedIndex = -1;
   switch (state.router.route) {
-    case ROUTE_SETTINGS:
+    case ROUTE_PREFERENCES:
       bottomNavigationSelectedIndex = 2;
       break;
     case ROUTE_PHRASEBOOK:
@@ -234,7 +219,7 @@ const mapStateToProps = (state) => {
   return {
     bottomNavigationSelectedIndex,
     fullPageLoading: state.pages.ocr && state.pages.ocr.status === 'loading',
-    primaryColorId: state.settings.primaryColorId,
+    primaryColorId: state.preferences.primaryColorId,
     route: state.router.route,
     shouldShowBottomNav: !(state.pages.home.imeMode === 'handwriting' || state.pages.home.imeMode === 'speech'),
     snackbarMessage: state.snackbar.message,

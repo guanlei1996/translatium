@@ -1,7 +1,7 @@
 {
 	"home": "Início",
 	"phrasebook": "Favoritos",
-	"settings": "Configrações",
+	"preferences": "Configrações",
 
 	"website": "Site",
 
@@ -101,10 +101,6 @@
 	"change": "Mudar",
 	"close": "Fechar",
 
-	"dockAndMenubar": "Dock e Barra de Menus",
-	"showOnBothDockAndMenubar": "Mostrar em ambos: Dock e Barra de Menus",
-	"onlyShowOnDock": "Mostrar apenas na Dock",
-	"onlyShowOnMenubar": "Mostrar apenas na Barra de Menus",
 	"quit": "Sair",
 
 	"appearance": "Aparência",
@@ -114,11 +110,6 @@
 
 	"shortcuts": "Atalhos do Teclado",
 	"openOnMenubar": "Abrir o app Translatium na Barra de Menus",
-	"openInputLangList": "Selecione o idioma de entrada",
-	"openOutputLangList": "Selecione o idioma de saída",
-	"swapLanguages": "Trocar os idiomas",
-	"clearInput": "Limpar o texto inserido",
-	"saveToPhrasebook": "Salvar nos Favoritos",
 
 	"searchLanguages": "Pesquisar idiomas",
 	"noLanguageFound": "Nenhuma idioma encontrado",
@@ -140,5 +131,7 @@
 
 	"popclipExtension": "PopClip Extension",
 
-	"support": "Suporte"
+	"support": "Suporte",
+
+	"automatic": "Automatycznie"
 }

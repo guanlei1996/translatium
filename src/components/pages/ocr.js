@@ -197,8 +197,8 @@ Ocr.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  inputLang: state.settings.inputLang,
-  outputLang: state.settings.outputLang,
+  inputLang: state.preferences.inputLang,
+  outputLang: state.preferences.outputLang,
   ocr: state.pages.ocr,
   strings: state.strings,
 });

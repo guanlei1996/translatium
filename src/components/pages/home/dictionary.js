@@ -6,10 +6,10 @@ import Typography from '@material-ui/core/Typography';
 
 import connectComponent from '../../../helpers/connect-component';
 
-import { updateInputLang, updateOutputLang } from '../../../state/root/settings/actions';
+import { updateInputLang, updateOutputLang } from '../../../state/root/preferences/actions';
 import { updateInputText } from '../../../state/pages/home/actions';
 
-const styles = {
+const styles = theme => ({
   container: {
     marginTop: 32,
   },
@@ -28,6 +28,7 @@ const styles = {
     marginTop: 8,
   },
   link: {
+    color: theme.palette.text.primary,
     '&:hover': {
       textDecoration: 'underline',
     },
@@ -35,7 +36,7 @@ const styles = {
   ul: {
     margin: 0,
   },
-};
+});
 
 const Dictionary = ({
   classes,
@@ -52,12 +53,12 @@ const Dictionary = ({
         <div>
           {output.inputDict[1] && (
             <div key="definitions">
-              <Typography variant="title" align="left" className={classes.title}>
+              <Typography variant="h6" align="left" className={classes.title}>
                 {strings.definitions}
               </Typography>
               {output.inputDict[1].map(x => (
                 <div key={`definition_section_${x[0]}`}>
-                  <Typography variant="subheading" align="left" className={classes.subheading}>
+                  <Typography variant="h6" align="left" className={classes.subheading}>
                     {strings[x[0]]}
                   </Typography>
                   {x[1].map((y, v) => (
@@ -100,12 +101,12 @@ const Dictionary = ({
           )}
           {output.inputDict[0] && (
             <div key="synonyms">
-              <Typography variant="title" align="left" className={classes.title}>
+              <Typography variant="h6" align="left" className={classes.title}>
                 {strings.synonyms}
               </Typography>
               {output.inputDict[0].map(x => (
                 <div key={`synonyms_section_${x[0]}`}>
-                  <Typography variant="subheading" align="left" className={classes.subheading}>
+                  <Typography variant="h6" align="left" className={classes.subheading}>
                     {strings[x[0]]}
                   </Typography>
                   <ul className={classes.ul}>
@@ -134,7 +135,7 @@ const Dictionary = ({
           )}
           {output.inputDict[2] && (
             <div key="examples">
-              <Typography variant="title" align="left" className={classes.title}>
+              <Typography variant="h6" align="left" className={classes.title}>
                 {strings.examples}
               </Typography>
               <div>
@@ -166,7 +167,7 @@ const Dictionary = ({
           )}
           {output.inputDict[3] && (
             <div key="seeAlso">
-              <Typography variant="title" align="left" className={classes.title}>
+              <Typography variant="h6" align="left" className={classes.title}>
                 {strings.seeAlso}
               </Typography>
               <div>
@@ -201,12 +202,12 @@ const Dictionary = ({
       {output.outputDict && (
         <div>
           <Divider className={classes.divider} />
-          <Typography variant="title" align="left" className={classes.title}>
+          <Typography variant="h6" align="left" className={classes.title}>
             {strings.translations}
           </Typography>
           {output.outputDict.map(x => (
             <div key={x[0]}>
-              <Typography variant="subheading" align="left" className={classes.subheading}>
+              <Typography variant="h6" align="left" className={classes.subheading}>
                 {strings[x[0]]}
               </Typography>
               {x[2].map((y, j) => (

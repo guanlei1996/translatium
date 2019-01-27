@@ -5,7 +5,7 @@
 > Old Git history prior to March 2018 is squashed. You can still find it [here](https://github.com/translatium/translatium/tree/02-2018) & [here](https://github.com/translatium/translatium/tree/legacy).
 
 **Requirements**
-Node.js 10+.
+Node.js 10
 
 ## Development
 Run `yarn` to install dependencies.

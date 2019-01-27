@@ -13,9 +13,8 @@ import connectComponent from '../../../helpers/connect-component';
 import {
   closeShortcutDialog,
   setCombinator,
-} from '../../../state/pages/settings/shortcut-dialog/actions';
-import { updateSetting } from '../../../state/root/settings/actions';
-import { defaultState as defaultSettings } from '../../../state/root/settings/reducers';
+} from '../../../state/pages/preferences/shortcut-dialog/actions';
+import { setPreference } from '../../../state/root/preferences/actions';
 
 const styles = {
   combinatorContainer: {
@@ -68,7 +67,6 @@ class DialogShortcut extends React.Component {
       combinator,
       identifier,
       onCloseShortcutDialog,
-      onSetCombinator,
       onUpdateSettings,
       open,
       strings,
@@ -77,10 +75,7 @@ class DialogShortcut extends React.Component {
     return (
       <Dialog open={open} onRequestClose={onCloseShortcutDialog}>
         <DialogTitle>
-          {strings.shortcuts}
-:
-          {' '}
-          {strings[identifier]}
+          {strings[identifier] || ''}
         </DialogTitle>
         <DialogContent>
           <DialogContentText>
@@ -90,9 +85,7 @@ class DialogShortcut extends React.Component {
             {combinator && combinator !== '+' && combinator.split('+').map((key, i) => (
               <span key={key}>
                 {i > 0 && <span className={classes.plusText}>+</span>}
-                <Button variant="raised">
-                  {renderCombinator(key)}
-                </Button>
+                {renderCombinator(key)}
               </span>
             ))}
           </DialogContentText>
@@ -100,15 +93,6 @@ class DialogShortcut extends React.Component {
         <DialogActions>
           <Button onClick={onCloseShortcutDialog}>
             {strings.cancel}
-          </Button>
-          <Button
-            color="secondary"
-            onClick={() => {
-              onUpdateSettings(`${identifier}Shortcut`, defaultSettings[`${identifier}Shortcut`]);
-              onSetCombinator(defaultSettings[`${identifier}Shortcut`]);
-            }}
-          >
-            {strings.resetToDefault}
           </Button>
           <Button
             color="primary"
@@ -142,16 +126,16 @@ DialogShortcut.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  combinator: state.pages.settings.shortcutDialog.combinator,
-  identifier: state.pages.settings.shortcutDialog.identifier,
-  open: state.pages.settings.shortcutDialog.open,
+  combinator: state.pages.preferences.shortcutDialog.combinator,
+  identifier: state.pages.preferences.shortcutDialog.identifier,
+  open: state.pages.preferences.shortcutDialog.open,
   strings: state.strings,
 });
 
 const mapDispatchToProps = dispatch => ({
   onCloseShortcutDialog: () => dispatch(closeShortcutDialog()),
   onSetCombinator: combinator => dispatch(setCombinator(combinator)),
-  onUpdateSettings: (name, value) => dispatch(updateSetting(name, value)),
+  onUpdateSettings: (name, value) => dispatch(setPreference(name, value)),
 });
 
 export default connectComponent(

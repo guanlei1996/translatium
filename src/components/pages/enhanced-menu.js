@@ -71,8 +71,8 @@ class EnhancedMenu extends React.Component {
 EnhancedMenu.propTypes = {
   buttonElement: PropTypes.element.isRequired,
   children: PropTypes.oneOfType([
-    PropTypes.element,
-    PropTypes.arrayOf(PropTypes.element),
+    PropTypes.node,
+    PropTypes.arrayOf(PropTypes.node),
   ]).isRequired,
   classes: PropTypes.object.isRequired,
   id: PropTypes.string.isRequired,

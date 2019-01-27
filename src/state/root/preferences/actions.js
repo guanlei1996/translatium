@@ -1,24 +1,24 @@
-import { UPDATE_SETTING, UPDATE_OUTPUT } from '../../../constants/actions';
+import { SET_PREFERENCE, UPDATE_OUTPUT } from '../../../constants/actions';
 
 import { isOutput } from '../../../helpers/language-utils';
 
 import { translate } from '../../pages/home/actions';
 
-export const updateSetting = (name, value) => ({
-  type: UPDATE_SETTING,
+export const setPreference = (name, value) => ({
+  type: SET_PREFERENCE,
   name,
   value,
 });
 
-export const toggleSetting = name => ((dispatch, getState) => {
-  const value = !getState().settings[name];
-  dispatch(updateSetting(name, value));
+export const togglePreference = name => ((dispatch, getState) => {
+  const value = !getState().preferences[name];
+  dispatch(setPreference(name, value));
 });
 
 
 const runAfterLanguageChange = language => ((dispatch, getState) => {
-  const { settings } = getState();
-  const { realtime, recentLanguages } = settings;
+  const { preferences } = getState();
+  const { realtime, recentLanguages } = preferences;
 
   if (realtime === true) {
     dispatch(translate());
@@ -35,36 +35,36 @@ const runAfterLanguageChange = language => ((dispatch, getState) => {
     recentLanguages.unshift(language);
   }
 
-  dispatch(updateSetting('recentLanguages', recentLanguages.slice(0, 6)));
+  dispatch(setPreference('recentLanguages', recentLanguages.slice(0, 6)));
 });
 
 export const swapLanguages = () => ((dispatch, getState) => {
-  const { inputLang, outputLang } = getState().settings;
+  const { inputLang, outputLang } = getState().preferences;
 
   if (isOutput(inputLang) === false) return;
 
-  dispatch(updateSetting('inputLang', outputLang));
-  dispatch(updateSetting('outputLang', inputLang));
+  dispatch(setPreference('inputLang', outputLang));
+  dispatch(setPreference('outputLang', inputLang));
 
   dispatch(runAfterLanguageChange());
 });
 
 export const updateInputLang = value => ((dispatch, getState) => {
-  if (getState().settings.outputLang === value) { // newInputLang === outputLang
+  if (getState().preferences.outputLang === value) { // newInputLang === outputLang
     dispatch(swapLanguages());
     return;
   }
 
-  dispatch(updateSetting('inputLang', value));
+  dispatch(setPreference('inputLang', value));
   dispatch(runAfterLanguageChange(value));
 });
 
 export const updateOutputLang = value => ((dispatch, getState) => {
-  if (getState().settings.inputLang === value) { // newOutputLang === inputLang
+  if (getState().preferences.inputLang === value) { // newOutputLang === inputLang
     dispatch(swapLanguages());
     return;
   }
 
-  dispatch(updateSetting('outputLang', value));
+  dispatch(setPreference('outputLang', value));
   dispatch(runAfterLanguageChange(value));
 });

@@ -1,7 +1,7 @@
 {
 	"home": "Strona Główna",
 	"phrasebook": "Rozmówki",
-	"settings": "Ustawienia",
+	"preferences": "Ustawienia",
 
 	"website": "Strona internetowa",
 
@@ -101,10 +101,6 @@
 	"change": "Zmień",
 	"close": "Zamknij",
 
-	"dockAndMenubar": "Dock & Pasek menu",
-	"showOnBothDockAndMenubar": "Pokaż na Docku i Pasku menu",
-	"onlyShowOnDock": "Pokaż tylko na Docku",
-	"onlyShowOnMenubar": "Pokaż tylko na Pasku Menu",
 	"quit": "Zamknij",
 
 	"appearance": "Wygląd",
@@ -114,11 +110,6 @@
 
 	"shortcuts": "Skróty klawiszowe",
 	"openOnMenubar": "Otwórz Translatium na Pasku menu",
-	"openInputLangList": "Wybierz język wprowadzania",
-	"openOutputLangList": "Wybierz język wyjściowy",
-	"swapLanguages": "Zamień języki",
-	"clearInput": "Wyczyść wprowadzany tekst",
-	"saveToPhrasebook": "Zapisz do rozmówek",
 
 	"searchLanguages": "Szukaj w językach",
 	"noLanguageFound": "Nie znaleziono języka",
@@ -140,5 +131,7 @@
 
 	"popclipExtension": "PopClip Extension",
 
-	"support": "Wsparcie"
+	"support": "Wsparcie",
+
+	"automatic": "Automatyczny"
 }

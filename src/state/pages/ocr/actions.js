@@ -10,7 +10,7 @@ import { openAlert } from '../../root/alert/actions';
 import { changeRoute } from '../../root/router/actions';
 
 export const loadImage = () => (dispatch, getState) => {
-  const { inputLang, outputLang, chinaMode } = getState().settings;
+  const { inputLang, outputLang, chinaMode } = getState().preferences;
 
   openFileToBlobAsync()
     .then((result) => {

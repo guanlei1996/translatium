@@ -18,8 +18,8 @@ export const loadSuggestions = (
   canvasHeight,
   canvasWidth,
 ) => ((dispatch, getState) => {
-  const { settings, pages } = getState();
-  const { inputLang, chinaMode } = settings;
+  const { preferences, pages } = getState();
+  const { inputLang, chinaMode } = preferences;
   const { inputText, selectionStart, selectionEnd } = pages.home;
   const { suggestions } = pages.home.handwriting;
 

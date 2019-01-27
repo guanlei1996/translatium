@@ -1,7 +1,7 @@
 {
 	"home": "Start",
 	"phrasebook": "Sprachführer",
-	"settings": "Einstellungen",
+	"preferences": "Einstellungen",
 
 	"website": "Webseite",
 
@@ -101,10 +101,6 @@
 	"change": "Ändern",
 	"close": "Schließen",
 
-	"dockAndMenubar": "Dock & Menübar",
-	"showOnBothDockAndMenubar": "Zeige sowohl auf dem Dock, als auch in der Menübar an.",
-	"onlyShowOnDock": "Nur im Dock",
-	"onlyShowOnMenubar": "Nur in der Menübar",
 	"quit": "Verlassen",
 
 	"appearance": "Aussehen",
@@ -114,11 +110,6 @@
 
 	"shortcuts": "Tastenkürzel",
 	"openOnMenubar": "Öffne Translatium von der Menübar",
-	"openInputLangList": "Wähle Eingabe-Sprache",
-	"openOutputLangList": "Wähle Ausgabe-Sprache",
-	"swapLanguages": "Wechsle Sprachen",
-	"clearInput": "Leere den eingegeben Text",
-	"saveToPhrasebook": "Speiche zum Phrasebook",
 
 	"searchLanguages": "Sprache suchen",
 	"noLanguageFound": "Keine Sprache gefunden",
@@ -140,5 +131,7 @@
 
 	"popclipExtension": "PopClip Extension",
 
-	"support": "Unterstützung"
+	"support": "Unterstützung",
+
+	"automatic": "Automatik"
 }

@@ -54,7 +54,7 @@ import {
   swapLanguages,
   updateInputLang,
   updateOutputLang,
-} from '../../../state/root/settings/actions';
+} from '../../../state/root/preferences/actions';
 import {
   insertInputText,
   toggleFullscreenInputBox,
@@ -108,6 +108,7 @@ const styles = theme => ({
     fontSize: 16,
     boxSizing: 'border-box',
     flex: 1,
+    resize: 'none',
   },
   controllerContainer: {
     flexBasis: 48,
@@ -115,13 +116,13 @@ const styles = theme => ({
     paddingRight: 8,
     boxSizing: 'border-box',
     borderTop: `1px solid ${theme.palette.text.disabled}`,
+    display: 'flex',
+    alignItems: 'center',
   },
   controllerContainerLeft: {
-    float: 'left',
+    flex: 1,
   },
   controllerContainerRight: {
-    float: 'right',
-    paddingTop: 6,
   },
   resultContainer: {
     flex: 1,
@@ -337,12 +338,12 @@ class Home extends React.Component {
       default: {
         const controllers = [
           {
-            icon: output.phrasebookId ? <ToggleStar /> : <ToggleStarBorder />,
+            icon: output.phrasebookId ? <ToggleStar fontSize="small" /> : <ToggleStarBorder fontSize="small" />,
             tooltip: output.phrasebookId ? strings.removeFromPhrasebook : strings.addToPhrasebook,
             onClick: onTogglePhrasebookClick,
           },
           {
-            icon: <ActionSwapVert />,
+            icon: <ActionSwapVert fontSize="small" />,
             tooltip: strings.swap,
             onClick: () => onSwapOutputButtonClick(
               output.outputLang,
@@ -352,7 +353,7 @@ class Home extends React.Component {
           },
           {
             icon: (
-              <SvgIcon>
+              <SvgIcon fontSize="small">
                 <path d="M19,21H8V7H19M19,5H8A2,2 0 0,0 6,7V21A2,2 0 0,0 8,23H19A2,2 0 0,0 21,21V7A2,2 0 0,0 19,5M16,1H4A2,2 0 0,0 2,3V17H4V3H16V1Z" />
               </SvgIcon>
             ),
@@ -363,7 +364,7 @@ class Home extends React.Component {
 
         if (isTtsSupported(output.outputLang)) {
           controllers.unshift({
-            icon: textToSpeechPlaying ? <AVStop /> : <AVVolumeUp />,
+            icon: textToSpeechPlaying ? <AVStop fontSize="small" /> : <AVVolumeUp fontSize="small" />,
             tooltip: textToSpeechPlaying ? strings.stop : strings.listen,
             onClick: () => onListenButtonClick(
               textToSpeechPlaying,
@@ -403,7 +404,7 @@ class Home extends React.Component {
                 <span role="img" aria-label="">💡</span>
                 <span>
                   {strings.translateFrom}
-:&#32;
+:&nbsp;
                 </span>
                 <span
                   className={classes.link}
@@ -413,7 +414,7 @@ class Home extends React.Component {
                 >
                   {strings[output.suggestedInputLang]}
                 </span>
-                <span>&#32;?&#32;</span>
+                <span>?</span>
               </Typography>
             )}
 
@@ -426,7 +427,7 @@ class Home extends React.Component {
                 <span role="img" aria-label="">💡</span>
                 <span>
                   {strings.didYouMean}
-:&#32;
+:&nbsp;
                 </span>
                 <span
                   className={classes.link}
@@ -436,14 +437,14 @@ class Home extends React.Component {
                 >
                   {output.suggestedInputText}
                 </span>
-                <span>&#32;?&#32;</span>
+                <span>?</span>
               </Typography>
             )}
 
             <Card className={classes.outputCard}>
               <CardContent className="text-selectable">
                 <Typography
-                  variant="headline"
+                  variant="h6"
                   lang={toCountryRemovedLanguage(output.outputLang)}
                   className="text-selectable"
                 >
@@ -472,7 +473,7 @@ class Home extends React.Component {
                     id="homeMore2"
                     buttonElement={(
                       <IconButton aria-label={strings.more} tooltipPosition="bottom-center">
-                        <NavigationMoreVert />
+                        <NavigationMoreVert fontSize="small" />
                       </IconButton>
                     )}
                     anchorOrigin={{ horizontal: 'left', vertical: 'top' }}
@@ -536,7 +537,7 @@ class Home extends React.Component {
     const controllers = [
       {
         icon: (
-          <SvgIcon>
+          <SvgIcon fontSize="small">
             <path d="M19,20H5V4H7V7H17V4H19M12,2A1,1 0 0,1 13,3A1,1 0 0,1 12,4A1,1 0 0,1 11,3A1,1 0 0,1 12,2M19,2H14.82C14.4,0.84 13.3,0 12,0C10.7,0 9.6,0.84 9.18,2H5A2,2 0 0,0 3,4V20A2,2 0 0,0 5,22H19A2,2 0 0,0 21,20V4A2,2 0 0,0 19,2Z" />
           </SvgIcon>
         ),
@@ -547,7 +548,7 @@ class Home extends React.Component {
         },
       },
       {
-        icon: <ContentClear />,
+        icon: <ContentClear fontSize="small" />,
         tooltip: strings.clear,
         onClick: onClearButtonClick,
       },
@@ -555,7 +556,7 @@ class Home extends React.Component {
 
     if (isTtsSupported(inputLang)) {
       controllers.push({
-        icon: textToSpeechPlaying ? <AVStop /> : <AVVolumeUp />,
+        icon: textToSpeechPlaying ? <AVStop fontSize="small" /> : <AVVolumeUp fontSize="small" />,
         tooltip: textToSpeechPlaying ? strings.stop : strings.listen,
         onClick: () => onListenButtonClick(textToSpeechPlaying, inputLang, inputText),
       });
@@ -563,7 +564,7 @@ class Home extends React.Component {
 
     if (isVoiceRecognitionSupported(inputLang)) {
       controllers.push({
-        icon: <AVMic />,
+        icon: <AVMic fontSize="small" />,
         tooltip: strings.speak,
         onClick: onSpeakButtonClick,
       });
@@ -571,7 +572,7 @@ class Home extends React.Component {
 
     if (isHandwritingSupported(inputLang) && !chinaMode) {
       controllers.push({
-        icon: <ContentGesture />,
+        icon: <ContentGesture fontSize="small" />,
         tooltip: strings.draw,
         onClick: onWriteButtonClick,
       });
@@ -579,7 +580,7 @@ class Home extends React.Component {
 
     if (isOcrSupported(inputLang)) {
       controllers.push({
-        icon: <ImageImage />,
+        icon: <ImageImage fontSize="small" />,
         tooltip: strings.openImageFile,
         onClick: onOpenImageButtonClick,
       });
@@ -591,7 +592,7 @@ class Home extends React.Component {
       onClick: onFullscreenButtonClick,
     });
 
-    const maxVisibleIcon = Math.min(Math.round((screenWidth - 200) / 56), controllers.length);
+    const maxVisibleIcon = Math.min(Math.round((screenWidth - 200) / 40), controllers.length);
 
     const showMoreButton = (maxVisibleIcon < controllers.length);
 
@@ -603,7 +604,7 @@ class Home extends React.Component {
           onClick={() => onAnotherContainerClick(imeMode)}
         >
           <AppBar position="static">
-            <Toolbar>
+            <Toolbar variant="dense">
               <Button
                 color="inherit"
                 className={classes.languageTitle}
@@ -670,7 +671,7 @@ class Home extends React.Component {
                     id="homeMore"
                     buttonElement={(
                       <IconButton aria-label={strings.more}>
-                        <NavigationMoreVert />
+                        <NavigationMoreVert fontSize="small" />
                       </IconButton>
                     )}
                   >
@@ -689,7 +690,7 @@ class Home extends React.Component {
               </div>
               <div className={classes.controllerContainerRight}>
                 <Tooltip title={strings.andSaveToHistory} placement={fullscreenInputBox ? 'top' : 'bottom'}>
-                  <Button variant="raised" color="primary" onClick={onTranslateButtonClick}>
+                  <Button size="small" variant="outlined" color="primary" onClick={onTranslateButtonClick}>
                     {strings.translate}
                   </Button>
                 </Tooltip>
@@ -750,27 +751,27 @@ Home.propTypes = {
 
 const mapStateToProps = state => ({
   screenWidth: state.screen.screenWidth,
-  translateWhenPressingEnter: state.settings.translateWhenPressingEnter,
-  inputLang: state.settings.inputLang,
-  outputLang: state.settings.outputLang,
+  translateWhenPressingEnter: state.preferences.translateWhenPressingEnter,
+  inputLang: state.preferences.inputLang,
+  outputLang: state.preferences.outputLang,
   inputText: state.pages.home.inputText,
   output: state.pages.home.output,
   imeMode: state.pages.home.imeMode,
   textToSpeechPlaying: state.pages.home.textToSpeech.textToSpeechPlaying,
   fullscreenInputBox: state.pages.home.fullscreenInputBox,
-  chinaMode: state.settings.chinaMode,
+  chinaMode: state.preferences.chinaMode,
   strings: state.strings,
 
-  clearInputShortcut: state.settings.clearInputShortcut,
-  drawShortcut: state.settings.drawShortcut,
-  listenShortcut: state.settings.listenShortcut,
-  openImageFileShortcut: state.settings.openImageFileShortcut,
-  openInputLangListShortcut: state.settings.openInputLangListShortcut,
-  openOnMenubarShortcut: state.settings.openOnMenubarShortcut,
-  openOutputLangListShortcut: state.settings.openOutputLangListShortcut,
-  saveToPhrasebookShortcut: state.settings.saveToPhrasebookShortcut,
-  speakShorcut: state.settings.speakShorcut,
-  swapLanguagesShortcut: state.settings.swapLanguagesShortcut,
+  clearInputShortcut: state.preferences.clearInputShortcut,
+  drawShortcut: state.preferences.drawShortcut,
+  listenShortcut: state.preferences.listenShortcut,
+  openImageFileShortcut: state.preferences.openImageFileShortcut,
+  openInputLangListShortcut: state.preferences.openInputLangListShortcut,
+  openOnMenubarShortcut: state.preferences.openOnMenubarShortcut,
+  openOutputLangListShortcut: state.preferences.openOutputLangListShortcut,
+  saveToPhrasebookShortcut: state.preferences.saveToPhrasebookShortcut,
+  speakShorcut: state.preferences.speakShorcut,
+  swapLanguagesShortcut: state.preferences.swapLanguagesShortcut,
 });
 
 const mapDispatchToProps = dispatch => ({

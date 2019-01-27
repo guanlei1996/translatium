@@ -1,7 +1,7 @@
 {
 	"home": "主页",
 	"phrasebook": "收藏夹",
-	"settings": "设置",
+	"preferences": "设置",
 
 	"website": "Translatium 官网",
 
@@ -101,10 +101,6 @@
 	"change": "更改",
 	"close": "关闭",
 
-	"dockAndMenubar": "程序坞和菜单栏",
-	"showOnBothDockAndMenubar": "在程序坞和菜单栏上显示",
-	"onlyShowOnDock": "仅在程序坞上显示",
-	"onlyShowOnMenubar": "仅在菜单栏上显示",
 	"quit": "退出",
 
 	"appearance": "外观",
@@ -114,11 +110,6 @@
 
 	"shortcuts": "键盘快捷键",
 	"openOnMenubar": "在菜单栏上打开 Translatium",
-	"openInputLangList": "选择输入语言",
-	"openOutputLangList": "选择输出语言",
-	"swapLanguages": "交换翻译语言",
-	"clearInput": "清空输入文字",
-	"saveToPhrasebook": "保存到收藏夹",
 
 	"searchLanguages": "搜索语言",
 	"noLanguageFound": "没有找到对应语言",
@@ -140,5 +131,7 @@
 
 	"popclipExtension": "PopClip Extension",
 
-	"support": "支持"
+	"support": "支持",
+
+	"automatic": "自动"
 }

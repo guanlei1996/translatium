@@ -7,7 +7,7 @@ import {
 
 import alert from './root/alert/reducers';
 import screen from './root/screen/reducers';
-import settings from './root/settings/reducers';
+import preferences from './root/preferences/reducers';
 import snackbar from './root/snackbar/reducers';
 import strings from './root/strings/reducers';
 import router from './root/router/reducers';
@@ -18,7 +18,7 @@ const rootReducer = combineReducers({
   alert,
   pages,
   screen,
-  settings,
+  preferences,
   snackbar,
   strings,
   router,

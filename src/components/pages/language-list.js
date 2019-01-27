@@ -23,7 +23,7 @@ import {
   getOcrSupportedLanguages,
 } from '../../helpers/language-utils';
 
-import { updateInputLang, updateOutputLang } from '../../state/root/settings/actions';
+import { updateInputLang, updateOutputLang } from '../../state/root/preferences/actions';
 import { updateLanguageListSearch } from '../../state/pages/language-list/actions';
 import { goBack } from '../../state/root/router/actions';
 
@@ -120,11 +120,11 @@ class LanguageList extends React.Component {
     return (
       <div className={classes.container}>
         <AppBar position="static">
-          <Toolbar>
+          <Toolbar variant="dense">
             <IconButton color="inherit" onClick={onCloseClick}>
               <CloseIcon />
             </IconButton>
-            <Typography variant="title" color="inherit">
+            <Typography variant="h6" color="inherit">
               {type === 'inputLang' ? strings.chooseAnInputLanguage : strings.chooseAnOutputLanguage}
             </Typography>
           </Toolbar>
@@ -230,7 +230,7 @@ const mapDispatchToProps = dispatch => ({
 });
 
 const mapStateToProps = state => ({
-  recentLanguages: state.settings.recentLanguages,
+  recentLanguages: state.preferences.recentLanguages,
   search: state.pages.languageList.search,
   strings: state.strings,
 });
